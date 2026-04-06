@@ -852,6 +852,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 811613968478221448, guid: 3bed9fa5c1a730c40888ceccbe3829ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1982541210}
+    - targetCorrespondingSourceObject: {fileID: 811613968478221448, guid: 3bed9fa5c1a730c40888ceccbe3829ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1982541211}
   m_SourcePrefab: {fileID: 100100000, guid: 3bed9fa5c1a730c40888ceccbe3829ef, type: 3}
 --- !u!1 &1695588461
 GameObject:
@@ -1215,15 +1218,30 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982541201}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff2172da1632a4f499f18b79f2070338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assignment_EnemyDetector
   detectionFOV: 120
-  detectionRange: 10
+  detectionRange: 6.4
   uiInfoText: {fileID: 0}
   detectedCount: 0
+--- !u!114 &1982541211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982541201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ab1b04a9e56bb4298949a315a120d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assignment_DirectionAlert
+  alertRange: 15
+  uiInfoText: {fileID: 0}
+  nearbyEnemies: []
 --- !u!1001 &2019482221
 PrefabInstance:
   m_ObjectHideFlags: 0
