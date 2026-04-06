@@ -17,22 +17,27 @@ public class Assignment_BulletHell : MonoBehaviour
     }
     [Header("=== 탄막 설정 ===")]
     [SerializeField] private GameObject bulletPrefab;
-    [Tooltip("발사 탄막 개수 (8~36권장)")] [Range(8, 36)]
+    [Tooltip("발사 탄막 개수 (8~36권장)")]
+    [Range(8, 36)]
     [SerializeField] private int bulletCount = 16;
-    [Tooltip("발사된 탄막 속도 (단위/초)")] [Range(1f, 20f)]
+    [Tooltip("발사된 탄막 속도 (단위/초)")]
+    [Range(1f, 20f)]
     [SerializeField] private float bulletSpeed = 10f;
-    [Tooltip("다음 발사까지 대기시간 (초)")] [Range(0.1f, 2f)]
+    [Tooltip("다음 발사까지 대기시간 (초)")]
+    [Range(0.1f, 2f)]
     [SerializeField] private float fireInterval = 0.5f;
 
     [Header("=== 패턴 선택 ===")]
     [SerializeField] private PatternType patternType = PatternType.Circle;
 
     [Header("=== 나선형 패턴 파라미터 ===")]
-    [Tooltip("나선형 회전 속도 (라디안/초)")] [Range(0.5f, 5f)]
+    [Tooltip("나선형 회전 속도 (라디안/초)")]
+    [Range(0.5f, 5f)]
     [SerializeField] private float spiralTurnSpeed = 2f;
 
     [Header("=== 부채꼴 패턴 파라미터 ===")]
-    [Tooltip("부채꼴 각도 범위 (도, 360까지)")] [Range(30f, 360f)]
+    [Tooltip("부채꼴 각도 범위 (도, 360까지)")]
+    [Range(30f, 360f)]
     [SerializeField] private float fanAngle = 120f;
 
     [Header("=== 디버그 정보 (읽기 전용) ===")]
@@ -86,22 +91,28 @@ public class Assignment_BulletHell : MonoBehaviour
 
     private Vector3 CalculateCircleDirection(int index, int total)
     {
-        // TODO
-        return Vector3.forward;
+        float angle = (360f / total) * index;
+        float radians = angle * Mathf.Deg2Rad;
+
+        return new Vector3(Mathf.Cos(radians), 0f, Mathf.Sin(radians)).normalized;
     }
 
     private Vector3 CalculateSpiralDirection(int index, int total)
     {
-        // TODO
-        return Vector3.forward;
+        float angle = (360f / total) * index + (Time.time * spiralTurnSpeed * Mathf.Rad2Deg);
+        float radians = angle * Mathf.Deg2Rad;
+
+        return new Vector3(Mathf.Cos(radians), 0f, Mathf.Sin(radians)).normalized;
     }
 
     private Vector3 CalculateFanDirection(int index, int total)
     {
-        // TODO
-        return Vector3.forward;
+        float angle = (fanAngle / total) * index;
+        float radians = angle * Mathf.Deg2Rad;
+
+        return new Vector3(Mathf.Cos(radians), 0f, Mathf.Sin(radians)).normalized;
     }
-    
+
     private void UpdateDebugUI()
     {
         if (debugUI == null) return;
