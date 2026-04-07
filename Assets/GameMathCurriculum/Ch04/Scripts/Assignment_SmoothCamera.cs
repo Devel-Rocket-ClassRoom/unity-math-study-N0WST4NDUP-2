@@ -76,28 +76,38 @@ public class Assignment_SmoothCamera : MonoBehaviour
 
         // 1. 마우스 휠 입력으로 줌 거리를 조절하고 min/max 범위로 클램프
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-        targetZoomDistance -= scrollInput * zoomSpeed;
-        targetZoomDistance = Mathf.Clamp(targetZoomDistance, minZoomDistance, maxZoomDistance);
+        if (scrollInput != 0f)
+        {
+            targetZoomDistance += scrollInput * zoomSpeed;
+            targetZoomDistance = Mathf.Clamp(targetZoomDistance, minZoomDistance, maxZoomDistance);
+        }
 
         // 2. Mathf.SmoothDamp로 현재 줌 거리를 목표 줌 거리에 부드럽게 수렴
         currentZoomDistance = Mathf.SmoothDamp(
-            currentZoomDistance, targetZoomDistance, ref zoomVelocity, zoomSmoothTime
-        );
+            currentZoomDistance,
+            targetZoomDistance,
+            ref zoomVelocity,
+            zoomSmoothTime
+            );
 
         // 3. 타겟 위치 + offset 방향 × 줌 거리로 카메라 목표 위치 계산
-        Vector3 startPos = transform.position;
         Vector3 desiredPos = target.position + offset.normalized * currentZoomDistance + Vector3.up * offset.y;
 
         // 4.Vector3.SmoothDamp로 카메라 위치를 부드럽게 이동
         transform.position = Vector3.SmoothDamp(
-            startPos, desiredPos, ref positionVelocity, positionSmoothTime
-        );
+            transform.position,
+            desiredPos,
+            ref positionVelocity,
+            positionSmoothTime
+            );
 
         // 5.Quaternion.Slerp로 카메라 회전을 목표 방향에 부드럽게 보간
         Quaternion desiredRotation = Quaternion.LookRotation(target.position - transform.position);
         transform.rotation = Quaternion.Slerp(
-            transform.rotation, desiredRotation, rotationSmoothSpeed * Time.deltaTime
-        );
+            transform.rotation,
+            desiredRotation,
+            rotationSmoothSpeed * Time.deltaTime
+            );
 
         UpdateUI();
     }

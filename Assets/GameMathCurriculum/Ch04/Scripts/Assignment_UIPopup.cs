@@ -108,8 +108,8 @@ public class Assignment_UIPopup : MonoBehaviour
         if (currentState == PopupState.Showing)
         {
             easedValue = EaseOutBounce(t);
-            popupPanel.localScale = Vector3.one * easedValue * 2f;
-            canvasGroup.alpha = easedValue;
+            popupPanel.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * 2f, easedValue);
+            canvasGroup.alpha = Mathf.Clamp(easedValue, 0f, 1f);
 
             if (t >= 1f)
             {
@@ -121,8 +121,8 @@ public class Assignment_UIPopup : MonoBehaviour
         else if (currentState == PopupState.Hiding)
         {
             easedValue = EaseOutBounce(t);
-            popupPanel.localScale = Vector3.one * (1f - easedValue) * 2f;
-            canvasGroup.alpha = 1f - easedValue;
+            popupPanel.localScale = Vector3.Lerp(Vector3.one * 2f, Vector3.zero, easedValue);
+            canvasGroup.alpha = Mathf.Clamp(easedValue, 1f, 0f);
 
             if (t >= 1f)
             {
@@ -135,7 +135,7 @@ public class Assignment_UIPopup : MonoBehaviour
 
     private float EaseOut(float t)
     {
-        return t * (2f - t);
+        return 1f - (1f - t) * (1f - t);
     }
 
     private float EaseOutBounce(float t)
