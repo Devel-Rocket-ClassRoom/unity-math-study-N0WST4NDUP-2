@@ -50,12 +50,13 @@ public class Assignment_CircularFormation : MonoBehaviour
             // 2.리더가 이동하면 진형이 함께 이동한다 v
             // 3.리더가 회전하면 진형 전체가 함께 회전한다 v
             // 4.각 유닛은 리더 기준 바깥 방향을 바라본다 v
-
             // 사용 API: Quaternion.AngleAxis, 쿼터니언 곱(*), 쿼터니언 × 벡터(Quaternion * Vector3)
 
-            float unitAngle = (360f / units.Length) * i;
-            units[i].position = leader.position + (Quaternion.AngleAxis(unitAngle, leader.up) * leader.forward * formationRadius);
-            units[i].rotation = Quaternion.AngleAxis(unitAngle, leader.up) * leader.rotation;
+            float unitAngle = (360f / currentUnitCount) * i;
+            var slotRotation = Quaternion.AngleAxis(unitAngle, leader.up);
+            var offset = slotRotation * leader.forward * formationRadius;
+            units[i].position = leader.position + offset;
+            units[i].rotation = slotRotation * leader.rotation;
         }
 
         UpdateUI();
@@ -83,7 +84,7 @@ public class Assignment_CircularFormation : MonoBehaviour
         if (!Application.isPlaying || leader == null || units == null) return;
 
         // 원형 궤도 표시
-        VectorGizmoHelper.DrawCircleXZ(leader.position, formationRadius, new Color(0.3f, 1f, 0.3f, 0.3f));
+        // VectorGizmoHelper.DrawCircleXZ(leader.position, formationRadius, new Color(0.3f, 1f, 0.3f, 0.3f));
 
         for (int i = 0; i < units.Length; i++)
         {

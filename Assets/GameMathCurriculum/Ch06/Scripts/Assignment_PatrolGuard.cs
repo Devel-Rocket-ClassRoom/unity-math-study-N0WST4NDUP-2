@@ -52,7 +52,6 @@ public class Assignment_PatrolGuard : MonoBehaviour
         Vector3 dirToNext = target.position - transform.position;
         dirToNext.y = 0f;
         dirToNext.Normalize();
-        distanceToNext = Vector3.Distance(transform.position, target.position);
 
         // 1.게임 시작 시 Inspector에서 설정한 각도로 초기 방향을 잡는다 v
         // 2.경비병은 항상 다음 웨이포인트를 향해 일정한 각속도로 몸을 돌린다 v
@@ -60,18 +59,19 @@ public class Assignment_PatrolGuard : MonoBehaviour
         // 4.웨이포인트에 도착하면 다음 웨이포인트로 전환하고, 마지막 이후에는 처음으로 순환한다 v
         // 사용 API: Quaternion.Euler, Quaternion.FromToRotation, Quaternion.RotateTowards
 
-        var targetRotation = Quaternion.FromToRotation(transform.forward, dirToNext) * transform.rotation;
+        var turnRotation = Quaternion.FromToRotation(transform.forward, dirToNext);
+        targetRotation = turnRotation * transform.rotation;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
 
         // 이동 (제공됨 — 수정 불필요)
         transform.position += transform.forward * moveSpeed * Time.deltaTime;
 
         // 도착 판정
+        distanceToNext = Vector3.Distance(transform.position, target.position);
         if (distanceToNext < arrivalThreshold)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
-
         angleToTarget = Quaternion.Angle(transform.rotation, targetRotation);
 
         UpdateUI();
