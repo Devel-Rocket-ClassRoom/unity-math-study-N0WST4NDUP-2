@@ -36,7 +36,7 @@ public class Assignment_GachaSimulator : MonoBehaviour
     [SerializeField] private float currentEffectiveRate;
     [SerializeField] private List<bool> pullHistory = new List<bool>();
     [SerializeField] private List<int> ssrPityList = new List<int>();
-    private const int MAX_HISTORY = 30;
+    private const int MAX_HISTORY = 120;
 
     private void Start()
     {
@@ -45,8 +45,6 @@ public class Assignment_GachaSimulator : MonoBehaviour
             Debug.LogError("[Assignment_GachaSimulator] TMP_Text UI가 할당되지 않았습니다.");
             return;
         }
-
-        currentEffectiveRate = baseRate;
 
         UpdateUI();
     }
@@ -88,48 +86,52 @@ public class Assignment_GachaSimulator : MonoBehaviour
         }
     }
 
-    private void ExecutePull()
+    private bool ExecutePull()
     {
-        totalPulls++;
-
-        if (currentPityCount >= softPityStart)
+        if (currentPityCount < softPityStart)
         {
-            currentEffectiveRate += Mathf.Lerp(baseRate, 1f, 1f / (hardPity - softPityStart));
+            currentEffectiveRate = baseRate;
+        }
+        else if (currentPityCount < hardPity - 1)
+        {
+            float rateIncrease = (1f - baseRate) / (hardPity - softPityStart);
+            currentEffectiveRate = baseRate + (currentPityCount - softPityStart + 1) * rateIncrease;
+        }
+        else
+        {
+            currentEffectiveRate = 1f;
         }
 
-        if (currentPityCount >= hardPity)
-        {
-            currentEffectiveRate = 1.0f;
-        }
-
-        bool isSSR = Random.value < Mathf.Clamp01(currentEffectiveRate);
-
+        bool isSSR = Random.value < currentEffectiveRate;
         if (isSSR)
         {
-            totalSSRs++;
-            ssrPityList.Add(currentPityCount);
-            if (ssrPityList.Count > MAX_HISTORY)
-            {
-                ssrPityList.RemoveAt(0);
-            }
-
-            currentEffectiveRate = baseRate;
+            ssrPityList.Insert(0, currentPityCount + 1);
             currentPityCount = 0;
+            totalSSRs++;
         }
         else
         {
             currentPityCount++;
         }
-        pullHistory.Add(isSSR);
+
+        totalPulls++;
+        pullHistory.Insert(0, isSSR);
+        if (pullHistory.Count > MAX_HISTORY)
+        {
+            pullHistory.RemoveAt(pullHistory.Count - 1);
+        }
 
         UpdateUI();
+
+        return isSSR;
     }
 
     private void UpdateUI()
     {
         if (statusText == null) return;
 
-        statusText.text = $"[뽑기 통계]\n" +
+        statusText.text =
+            $"[뽑기 통계]\n" +
             $"총 뽑기: {totalPulls}\n" +
             $"획득 SSR: <color=yellow>{totalSSRs}</color>\n" +
             $"현재 천장: {currentPityCount}/{hardPity}\n" +
@@ -192,7 +194,7 @@ public class Assignment_GachaSimulator : MonoBehaviour
         // 그래프 배경
         Gizmos.color = new Color(0.2f, 0.2f, 0.2f, 0.3f);
         Gizmos.DrawCube(basePos + Vector3.right * graphScale * 0.5f + Vector3.up * graphHeight * 0.5f,
-                       new Vector3(graphScale, graphHeight, 0.1f));
+                        new Vector3(graphScale, graphHeight, 0.1f));
 
         // 기본 확률 수평선 (피티 로직 구현 전까지 baseRate만 표시)
         Gizmos.color = new Color(0.2f, 1f, 0.2f, 0.8f);

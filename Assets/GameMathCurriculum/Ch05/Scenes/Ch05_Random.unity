@@ -1470,7 +1470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441839997501775134, guid: a7ecebbfa3d583341bd4556bc1bf8f15, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3441839997501775134, guid: a7ecebbfa3d583341bd4556bc1bf8f15, type: 3}
       propertyPath: statusText
@@ -1549,6 +1549,58 @@ PrefabInstance:
       propertyPath: statisticsText
       value: 
       objectReference: {fileID: 1172708288}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[3].name
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[4].name
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[3].weight
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[4].weight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[3].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[3].color.b
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[3].color.g
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[3].color.r
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[4].color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[4].color.b
+      value: 0.028217316
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[4].color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996318699133563559, guid: a6031942cca7463469e1650489c23560, type: 3}
+      propertyPath: items.Array.data[4].color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7351640142143313609, guid: a6031942cca7463469e1650489c23560, type: 3}
       propertyPath: m_Name
       value: DropTableManager
