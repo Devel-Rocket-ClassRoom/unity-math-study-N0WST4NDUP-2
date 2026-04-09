@@ -18,7 +18,7 @@ public class BulletPattern : MonoBehaviour
 
     [Header("=== 회전 설정 ===")]
     [SerializeField] private float autoRotationSpeed = 0f;
-    [SerializeField] private float bulletLifetime = 5f;
+    // [SerializeField] private float bulletLifetime = 5f;
 
     [Header("=== UI 텍스트 ===")]
     [SerializeField] private TextMeshProUGUI uiText;

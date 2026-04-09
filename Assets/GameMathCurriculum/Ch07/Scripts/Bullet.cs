@@ -9,33 +9,36 @@ public class Bullet : MonoBehaviour
     private Vector3 _p2;
     private Vector3 _p3;
     private float _duration;
+    private float _elapsedTime;
 
     private void Update()
     {
-        if (_duration <= 0f)
+        if (_elapsedTime >= _duration)
         {
             Destroy(gameObject);
             return;
         }
 
-        _duration -= Time.deltaTime;
-        float t = 1f - _duration / MaxDuration;
+        _elapsedTime += Time.deltaTime;
+        float t = _elapsedTime / _duration;
         transform.position = CubicBezier(t);
     }
 
     public void Init(Vector3 endPos)
     {
         _p0 = transform.position;
+        _p3 = endPos;
+
         _p1 = _p0
                 + Vector3.up * Random.Range(-5f, 5f)
                 + Vector3.forward * Random.Range(-5f, 5f)
-                + Vector3.right * Random.Range(_p0.x, (endPos - _p0).x / 2f);
-        _p2 = endPos
+                + Vector3.right * Random.Range(_p0.x, (_p3 - _p0).x / 2f);
+        _p2 = _p3
                 + Vector3.up * Random.Range(-5f, 5f)
                 + Vector3.forward * Random.Range(-5f, 5f)
-                + Vector3.left * Random.Range((endPos - _p0).x / 2f, endPos.x);
-        _p3 = endPos;
+                + Vector3.left * Random.Range((_p3 - _p0).x / 2f, _p3.x);
         _duration = Random.Range(1f, MaxDuration);
+        _elapsedTime = 0f;
     }
 
     private Vector3 CubicBezier(float t)

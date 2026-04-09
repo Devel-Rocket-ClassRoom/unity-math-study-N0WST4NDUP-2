@@ -11,8 +11,8 @@ public class TurretAim : MonoBehaviour
 {
     [Header("=== 타겟 설정 ===")]
     [SerializeField] private Transform target;
-    [SerializeField] private float rotationSpeed = 180f;
-    [SerializeField] private bool lockYAxis = true;
+    // [SerializeField] private float rotationSpeed = 180f;
+    // [SerializeField] private bool lockYAxis = true;
 
     [Header("=== 감지 범위 ===")]
     [SerializeField] private float detectionRange = 20f;

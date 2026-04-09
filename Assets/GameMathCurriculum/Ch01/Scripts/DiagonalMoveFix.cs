@@ -9,10 +9,10 @@ using TMPro;
 
 public class DiagonalMoveFix : MonoBehaviour
 {
-    [Header("=== 이동 설정 ===")]
-    [Tooltip("이동 속도 (units/sec)")]
-    [Range(1f, 20f)]
-    [SerializeField] private float moveSpeed = 5f;
+    // [Header("=== 이동 설정 ===")]
+    // [Tooltip("이동 속도 (units/sec)")]
+    // [Range(1f, 20f)]
+    // [SerializeField] private float moveSpeed = 5f;
 
     [Header("=== 보정 토글 ===")]
     [Tooltip("true: 정규화 적용 (올바른 대각선 속도)\nfalse: 정규화 미적용 (대각선이 √2배 빠름)")]

@@ -43,7 +43,7 @@ public class EasingDemo : MonoBehaviour
     [Header("=== 디버그 정보 (읽기 전용) ===")]
     [SerializeField] private float currentT = 0f;
     [SerializeField] private float currentEasedValue = 0f;
-    [SerializeField] private bool isAnimating = false;
+    // [SerializeField] private bool isAnimating = false;
 
     private Vector3 startPos;
     private float jumpTimer = 0f;
