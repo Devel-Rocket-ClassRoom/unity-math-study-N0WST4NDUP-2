@@ -37,7 +37,19 @@ public class TargetWithIndicator : MonoBehaviour
         }
         else
         {
-            Indicator.SetActive(false);
+            Indicator.SetActive(true);
+            Indicator.transform.position = new(
+                Mathf.Clamp(screenPos.x, 0, Screen.width),
+                Mathf.Clamp(screenPos.y, 0, Screen.height),
+                0f);
+
+            if (screenPos.z < 0)
+            {
+                Indicator.transform.position = new(
+                    Screen.width - Indicator.transform.position.x,
+                    Screen.height - Indicator.transform.position.y,
+                    0f);
+            }
         }
         Debug.Log($"{gameObject.name}'s Screen Pos: {screenPos}");
     }

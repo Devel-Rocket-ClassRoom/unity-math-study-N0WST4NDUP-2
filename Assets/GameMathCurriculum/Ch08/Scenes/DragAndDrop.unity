@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 555455831}
   - component: {fileID: 555455830}
   - component: {fileID: 555455829}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Target_3
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 656902388}
   - component: {fileID: 656902387}
   - component: {fileID: 656902386}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Target_2
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 836306771}
   - component: {fileID: 836306770}
   - component: {fileID: 836306769}
+  - component: {fileID: 836306773}
   m_Layer: 8
   m_Name: Cube_3
   m_TagString: Draggable
@@ -459,6 +460,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &836306773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836306768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c2b1239acde7447936e496b56de336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragObject
+  ReturnSpeed: 2
 --- !u!1 &947627522
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +612,7 @@ GameObject:
   - component: {fileID: 1276478733}
   - component: {fileID: 1276478732}
   - component: {fileID: 1276478731}
+  - component: {fileID: 1276478735}
   m_Layer: 8
   m_Name: Cube_2
   m_TagString: Draggable
@@ -698,6 +713,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1276478735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276478730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c2b1239acde7447936e496b56de336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragObject
+  ReturnSpeed: 2
 --- !u!1 &1345092452
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +738,7 @@ GameObject:
   - component: {fileID: 1345092455}
   - component: {fileID: 1345092454}
   - component: {fileID: 1345092453}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Target_1
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -841,7 +869,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4543aaa89df03429a63b3468bc9caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragAndDropManager
-  terrain: {fileID: 1753448033}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 512
+  Target:
+    serializedVersion: 2
+    m_Bits: 1024
+  Draggable:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!4 &1355607572
 Transform:
   m_ObjectHideFlags: 0
@@ -869,6 +905,7 @@ GameObject:
   - component: {fileID: 1475275900}
   - component: {fileID: 1475275899}
   - component: {fileID: 1475275898}
+  - component: {fileID: 1475275902}
   m_Layer: 8
   m_Name: Cube_1
   m_TagString: Draggable
@@ -969,6 +1006,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1475275902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475275897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c2b1239acde7447936e496b56de336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragObject
+  ReturnSpeed: 2
 --- !u!1 &1753448031
 GameObject:
   m_ObjectHideFlags: 0
